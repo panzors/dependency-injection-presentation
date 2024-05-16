@@ -1,0 +1,6 @@
+@Presentation.Dependency_HostAddress = http://localhost:5041
+
+GET {{Presentation.Dependency_HostAddress}}/weatherforecast/forecast
+Accept: application/json
+
+###
