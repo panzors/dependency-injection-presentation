@@ -15,6 +15,23 @@ namespace Presentation.Dependency.Server
         public static IServiceCollection AddServices2(this IServiceCollection services)
         {
             //services.AddScoped<Func<IEnumerable>>
+
+        public static IServiceCollection RegisterDifferentThings(this IServiceCollection services)
+        {
+            services.Scan(scan => scan.FromAssemblyOf<ITransientService>()
+                .AddClasses(classes => classes.AssignableTo<ITransientService>())
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime()
+                .AddClasses(classes => classes.AssignableTo<IScopedService>())
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
+                .AddClasses(classes => classes.AssignableTo<ISingletonService>())
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime()
+                );
+
+            services.Decorate<IPaymentProvider, TelemetricsDecorator>();
+
             return services;
         }
     }
