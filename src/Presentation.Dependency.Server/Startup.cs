@@ -10,8 +10,8 @@ namespace Presentation.Dependency.Server
             services.AddScoped<ScopedListingService>();
             services.AddTransient<TransientListingService>();
             services.AddSingleton<SingletonListingService>();
-            services.AddTransient<CompoundListingService>();
-            services.AddTransient<CompoundListing2Service>();
+            services.AddScoped<CompoundListingService>();
+            services.AddScoped<CompoundListing2Service>();
 
             services.AddSingleton<IDatabaseService, FakeDatabaseService>();
             services.AddScoped<IPaymentProviderRouter, PaymentServiceProviderRouterService>();

@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation.Dependency.Server.Services
 {
-    public class CompoundListingService : IListingService, ITransientService
+    public class CompoundListingService : IListingService, IScopedService
     {
         private readonly SingletonListingService _singleton;
         private readonly ScopedListingService _scoped;
@@ -24,7 +24,7 @@ namespace Presentation.Dependency.Server.Services
         }
     }
 
-    public class CompoundListing2Service : IListingService, ITransientService
+    public class CompoundListing2Service : IListingService, IScopedService
     {
         private readonly SingletonListingService _singleton;
         private readonly ScopedListingService _scoped;
