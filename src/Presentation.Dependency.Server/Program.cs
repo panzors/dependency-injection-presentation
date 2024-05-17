@@ -9,11 +9,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Needed for IHttpClientFactory registered type
+builder.Services.AddHttpClient();
 // DEMO FUNCTIONS START HERE
 //builder.Services.StandardRegistration();
 
 // Register all the things with scrutor
 builder.Services.RegisterDifferentThings();
+
+builder.Services.RegisterOtherThings();
 
 var app = builder.Build();
 
