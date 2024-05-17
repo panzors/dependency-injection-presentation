@@ -1,10 +1,11 @@
 ﻿namespace Presentation.Dependency.Server.Services
 {
-    public class ScopedListingService : IListingService, IScopedService
+
+    public class SingletonListingService: IListingService, ISingletonService
     {
         private readonly List<string> _data;
 
-        public ScopedListingService() 
+        public SingletonListingService()
         {
             _data = new List<string>();
         }

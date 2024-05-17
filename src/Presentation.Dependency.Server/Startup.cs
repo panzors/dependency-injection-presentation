@@ -1,20 +1,29 @@
 ﻿using Presentation.Dependency.Server.Services;
+using Presentation.Dependency.Server.Services.Decorators;
 
 namespace Presentation.Dependency.Server
 {
     public static class Startup
     {
-        public static IServiceCollection AddServices(this IServiceCollection services) 
+        public static IServiceCollection StandardRegistration(this IServiceCollection services) 
         {
-            services.AddScoped<IScopedService, ScopedService>();
-            services.AddTransient<ITransientService, TransientService>();
-            services.AddSingleton<ISingletonService, SeasonsService>();
+            services.AddScoped<ScopedListingService>();
+            services.AddTransient<TransientListingService>();
+            services.AddSingleton<SingletonListingService>();
+            services.AddTransient<CompoundListingService>();
+            services.AddTransient<CompoundListing2Service>();
+
+            services.AddSingleton<IDatabaseService, FakeDatabaseService>();
+            services.AddScoped<IPaymentProviderRouter, PaymentServiceProviderRouterService>();
+            services.AddScoped<IPaymentProvider, ScroogeMcduckBankPaymentProvider>();
+            services.AddScoped<IPaymentProvider, PixelPayPaymentProvider>();
             return services;
         }
 
-        public static IServiceCollection AddServices2(this IServiceCollection services)
+        public static IServiceCollection RegisterAllTheThings(this IServiceCollection services)
         {
-            //services.AddScoped<Func<IEnumerable>>
+            return services;
+        }
 
         public static IServiceCollection RegisterDifferentThings(this IServiceCollection services)
         {
@@ -31,6 +40,13 @@ namespace Presentation.Dependency.Server
                 );
 
             services.Decorate<IPaymentProvider, TelemetricsDecorator>();
+
+            services.AddScoped<ScopedListingService>();
+            services.AddTransient<TransientListingService>();
+            services.AddSingleton<SingletonListingService>();
+            services.AddTransient<CompoundListingService>();
+            services.AddTransient<CompoundListing2Service>();
+
 
             return services;
         }

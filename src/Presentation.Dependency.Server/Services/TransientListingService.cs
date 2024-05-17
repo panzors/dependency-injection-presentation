@@ -1,10 +1,10 @@
 ﻿namespace Presentation.Dependency.Server.Services
 {
-    public class ScopedListingService : IListingService, IScopedService
+    public class TransientListingService : IListingService, ITransientService
     {
         private readonly List<string> _data;
 
-        public ScopedListingService() 
+        public TransientListingService()
         {
             _data = new List<string>();
         }

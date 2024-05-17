@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 
 // DEMO FUNCTIONS START HERE
 //builder.Services.StandardRegistration();
+
+// Register all the things with scrutor
 builder.Services.RegisterDifferentThings();
 
 var app = builder.Build();
