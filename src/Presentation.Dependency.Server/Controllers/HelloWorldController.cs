@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Presentation.Dependency.Server.Services;
+using Presentation.Dependency.Server.Services.Broken;
 
 namespace Presentation.Dependency.Server.Controllers
 {
@@ -12,5 +13,12 @@ namespace Presentation.Dependency.Server.Controllers
         {
             return helloWorldService.Speak();
         }
+
+        //[HttpGet]
+        //[Route("alternative")]
+        //public string Alternative([FromServices] Sangleton sangleton)
+        //{
+        //    return "sangleton loaded";
+        //}
     }
 }

@@ -4,7 +4,19 @@
     {
         public Sangleton(Soaped soapedService)
         {
-            // Something more long lived shouldn't have reference to scoped things
+            // Broken
         }
+
+        public Sangleton(Transistant transistant)
+        {
+            // Also broken
+        }
+
+        // Instead you can use this style if you want to work in a scope
+        // public Sangleton(IServiceProvider provider)
+        // {
+        //     var scope = provider.CreateScope();
+        //     var soaped = scope.ServiceProvider.GetService<Soaped>();
+        // }
     }
 }
