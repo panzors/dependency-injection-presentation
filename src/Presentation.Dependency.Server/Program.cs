@@ -15,9 +15,11 @@ builder.Services.AddHttpClient();
 //builder.Services.StandardRegistration();
 
 // Register all the things with scrutor
-builder.Services.RegisterDifferentThings();
+builder.Services.RegisterWithScrutor();
 
 builder.Services.RegisterOtherThings();
+builder.Services.RegisterConcreteClasses();
+builder.Services.BrokenRegistrations();
 
 var app = builder.Build();
 

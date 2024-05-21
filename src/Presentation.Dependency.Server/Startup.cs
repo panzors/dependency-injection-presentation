@@ -50,7 +50,7 @@ namespace Presentation.Dependency.Server
             return services;
         }
 
-        public static IServiceCollection RegisterDifferentThings(this IServiceCollection services)
+        public static IServiceCollection RegisterWithScrutor(this IServiceCollection services)
         {
             services.Scan(scan => scan.FromAssemblyOf<ITransientService>()
                 .AddClasses(classes => classes.AssignableTo<ITransientService>())
@@ -66,12 +66,33 @@ namespace Presentation.Dependency.Server
 
             services.Decorate<IPaymentProvider, TelemetricsDecorator>();
 
+
+            return services;
+        }
+
+        public static IServiceCollection RegisterConcreteClasses(this IServiceCollection services)
+        {
+            // You can register concrete classes if you so choose. You don't have to register Interfaces
+            // It can get messy though so be careful what you're trying to achieve
             services.AddScoped<ScopedListingService>();
             services.AddTransient<TransientListingService>();
             services.AddSingleton<SingletonListingService>();
             services.AddTransient<CompoundListingService>();
             services.AddTransient<CompoundListing2Service>();
 
+            return services;
+        }
+
+        public static IServiceCollection BrokenRegistrations(this IServiceCollection services)
+        {
+            // Comment these in to see their damage
+
+            // Presentation.Dependency.Server.Services.Broken.Sangleton Lifetime: Singleton ImplementationType: Presentation.Dependency.Server.Services.Broken.Sangleton': Cannot consume scoped service 
+            //services.AddSingleton<Services.Broken.Sangleton>();
+            
+            services.AddScoped<Services.Broken.Soaped>();
+
+            services.AddTransient<Services.Broken.Transistant>();
 
             return services;
         }
