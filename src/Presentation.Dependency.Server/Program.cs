@@ -11,11 +11,15 @@ builder.Services.AddSwaggerGen();
 
 // Needed for IHttpClientFactory registered type
 builder.Services.AddHttpClient();
-// DEMO FUNCTIONS START HERE
-//builder.Services.StandardRegistration();
 
-// Register all the things with scrutor
-builder.Services.RegisterWithScrutor();
+// DEMO FUNCTIONS START HERE
+{
+    // Standard approach
+    builder.Services.StandardRegistration();
+
+    // Register all the things with scrutor
+    //builder.Services.RegisterWithScrutor();
+}
 
 builder.Services.RegisterOtherThings();
 builder.Services.RegisterConcreteClasses();

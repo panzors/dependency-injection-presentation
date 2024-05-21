@@ -23,14 +23,14 @@ namespace Presentation.Dependency.Server
 
         public static IServiceCollection RegisterOtherThings(this IServiceCollection services)
         {
-            // Simple
+            // Simple http client
             if (true)
             {
                 services.AddHttpClient<IJokeClient, JokeClient>();
             } 
-            else
+            else // longer way around
             {
-                // Named client
+                // Named client alternative
                 services.AddScoped<IJokeClient, JokeClient2>();
                 services.AddHttpClient("otherclient", (client) =>
                         client.BaseAddress = new Uri("https://v2.jokeapi.dev")
@@ -65,7 +65,6 @@ namespace Presentation.Dependency.Server
                 );
 
             services.Decorate<IPaymentProvider, TelemetricsDecorator>();
-
 
             return services;
         }
